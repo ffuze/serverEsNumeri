@@ -28,29 +28,24 @@ public class App
             out.writeBytes("Benvenuto, indovina un numero da 1 a 100" + "\n");
 
             int n = (int) (Math.random() * 100 + 1);
-            System.out.println(n);
 
-            int nRicevuto;
+            int nRicevuto = 0;
+            
             do {
                 nRicevuto = Integer.parseInt(in.readLine());
-                if (nRicevuto == 1) {
-                    out.writeByte(1);
-                    out.writeByte('\n');
-                } else if (nRicevuto == 2) {
-                    out.writeByte(2);
-                    out.writeByte('\n');
-                } else {
-                    out.writeByte(3);
-                    out.writeByte('\n');
-                }
-                out.flush();
+                if (nRicevuto < n) 
+                    out.writeBytes("1\n");
+                else if (nRicevuto > n) 
+                    out.writeBytes("2\n");
+                else if(nRicevuto == n)
+                    out.writeBytes("3\n");
             } while (nRicevuto != 3);
 
             s.close();
             server.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("C'è stato un errore nella fase di connessione");
+            System.out.println("C'è stato un errore nella fase di connessione oppure il client si e' disconnesso");
             System.exit(1);
         }
 
